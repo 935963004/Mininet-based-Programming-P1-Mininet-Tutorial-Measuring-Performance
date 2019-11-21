@@ -1,0 +1,90 @@
+Question 2
+
+Expected results:
+	Latency: 81.433 ms
+	Throughput: 18.776 Mbps
+
+Measured results:
+	Latency: 81.259 ms (RTT: 162.517 ms) 
+	Throughput: 17.919 Mbps 
+
+Expected latency is the sum of the latencies of the links along the path.
+Expected throughput is the link with the least throughput along the path (bottleneck).
+
+Question 3
+
+Two Hosts:
+	Expected values:
+		H1 - H4
+			Latency    : 81.433 ms
+			Throughput : 9.388 Mbps
+		H7 - H9
+			Latency    : 81.433 ms
+			Throughput : 9.388 Mbps
+	
+	Measured values:
+		H1 - H4
+			Latency    : 81.204 ms (RTT: 162.407 ms)
+			Throughput : 12.981 Mbps
+		H7 - H9
+			Latency    : 81.282 ms (RTT: 162.564 ms)
+			Throughput : 5.892 Mbps
+
+Three Hosts:
+	Expected values:
+		H1 - H4
+			Latency    : 81.433 ms
+			Throughput : 6.259 Mbps
+		H7 - H9
+			Latency    : 81.433 ms
+			Throughput : 6.259 Mbps
+		H8 - H10
+			Latency    : 81.433 ms
+			Throughput : 6.259 Mbps
+
+	Measured values:
+		H1 - H4
+			Latency    : 81.178 ms (RTT: 162.356 ms)
+			Throughput : 15.073 Mbps
+		H7 - H9
+			Latency    : 81.192 ms (RTT: 162.383 ms)
+			Throughput : 3.090 Mbps
+		H8 - H10
+			Latency    : 80.947 ms (RTT: 161.948 ms)
+			Throughput : 9.334 Mbps
+
+Expected latency is the sum of the latencies of the links along the path.
+The latency does not vary with such a small pair of hosts communicating at once as the transmission and propagation times are much much less than the queuing delays.
+As the number of hosts increase, latency might increase but it is difficult to simulate such behaviour in this limited setting.
+
+Expected throughput is the link with the least throughput along the path (bottleneck) divided by the number of simultaneous connections.
+The measured output does not seem to be consistent with the expected values.
+The major reason for this is (according to us) experimentation error.
+There are delays in starting servers and clients on various hosts to gather measurements but the experiment demands that we do it simultaneously.
+The inability to actually conduct simulatneous tests resulted in times that are a little higher for the first connection and lower for the next couple of connections.
+
+Question 4
+
+Expected values:
+	H1 - H4
+		Latency: 81.433 ms 
+		Throughput: 16.581 Mbps
+	H5 - H6:
+		Latency: 21.722 ms
+		Throughput: 20.388 Mbps
+
+Measured values:
+	H1 - H4
+		Latency: 81.343 ms (RTT 162.685 ms)
+		Throughput: 16.629 Mbps
+	H5 - H6:
+		Latency: 21.416 ms (RTT 42.832 ms)
+		Throughput: 15.099 Mbps
+
+Expected latency is the sum of the latencies of the links along the path.
+
+Expected throughput for H1 - H4 without sharing a line is: 18.776 Mbps;
+and for H5 - H6 without sharing a line is 22.583 Mbps. However, L2 is shared between the paths,
+and has a maximum bandwidth of 36.969 Mbps which is smaller than the total traffic that needs to be supported.
+It falls 4.39 Mbps short of the required traffic, and assuming the both routes are penalized by the same amount, 
+2.195 Mbps, we subtract this from the uninterrupted traffic bandwidth for the routes.
